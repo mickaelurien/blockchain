@@ -48,15 +48,3 @@ export class BlockChain {
     }
 
 }
-
-
-// Create two test blocks with some sample data
-let a = new Block({from: "Joe", to: "Jane"})
-let b = new Block({from: "Jane", to: "Joe"})
-
- 
-let chain = new BlockChain(2) // Init our chain
-chain.addNewBlock(a) // Add block a
-chain.addNewBlock(b) // Add block b
-chain.print()
-console.log("Validity: " + chain.checkChainValidity()) // Check our chain for validity
