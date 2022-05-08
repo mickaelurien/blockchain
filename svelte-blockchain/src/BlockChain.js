@@ -1,7 +1,7 @@
 import {Block} from './Block.js'
 
 export class BlockChain {
-    constructor(difficulty = 0) {
+    constructor(difficulty = 3) {
          this.blockchain = [] // Initialize a new array of blocks, starting with a genesis block
         this.startGenesisBlock()
         this.difficulty = difficulty
@@ -18,13 +18,13 @@ export class BlockChain {
         this.blockchain.push(genesis) // Add a genesis block
     }
 
-    async getLatestBlock() {
+    getLatestHash() {
         const lastElement = this.blockchain[this.blockchain.length - 1]
         return lastElement.hash // Get last block on the chain
     }
 
     async addNewBlock(newBlock) { // Add a new block
-        newBlock.prevHash = await this.getLatestBlock() // Set its previous hash to the correct value
+        newBlock.prevHash = this.getLatestHash() // Set its previous hash to the correct value
         newBlock.hash = newBlock.getFinalHash(this.difficulty)
         this.blockchain.push(newBlock) // Add the block to our chain
     }

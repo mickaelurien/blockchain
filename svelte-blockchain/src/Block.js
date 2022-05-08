@@ -10,7 +10,7 @@ export class Block {
 
     hashString(str) {
         return str.split('').reduce((prevHash, currVal) =>
-          (((prevHash << 5) - prevHash) + currVal.charCodeAt(0))|0, 0);
+          (((prevHash << 5) - prevHash) + currVal.charCodeAt(0))|0, 0)+'';
       }
 
 
@@ -20,17 +20,24 @@ export class Block {
     }
 
     getFinalHash(difficulty) {
-        this.hash = this.computeHash()
         this.hash = this.computeHash() // Recalculate its hash with this new prevHash value
         this.mine(difficulty);
         return this.hash
     }
 
+    getRandomInt() {
+        return Math.floor(Math.random() * 9);
+      }
+
     mine(difficulty) {
-        // const regex = new RegExp(`^(0){${difficulty}}.*`);
-        // while (!this.hash.match(regex)) {
-        //     this.pow++;
-        //     this.hash = this.computeHash();
-        // }
+        let number = '';
+        for(let i=0; i<difficulty; i++) {
+            number = number + this.getRandomInt();
+        }
+        console.log('mining looking for ' + number);
+        while (!this.hash.includes(number)) {
+            this.pow++;
+            this.hash = this.computeHash();
+        }
     }
 }
