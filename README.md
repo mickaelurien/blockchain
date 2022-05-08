@@ -2,7 +2,7 @@
 This project is a simple blockchain implementation in Node.js.
 ## How to use it
 
-To use this project, enter with your terminal in the folder and simply run
+To use this project, go in the project and simply run
 
 ```bash
   node index.js
